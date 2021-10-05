@@ -12,7 +12,7 @@ const AreaChart: React.FC<{
     return(
 
         <ChartCanvas 
-        ratio={1} 
+        ratio={3} 
         data={data} 
         width={width} 
         height={height} 
