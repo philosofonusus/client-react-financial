@@ -24,10 +24,10 @@ const AreaChart: React.FC<{
         xAccessor={d => d?.from}
         >
             <Chart id={0} yExtents={d => d?.bid}>
-                <XAxis axisAt="bottom" orient="bottom" ticks={6} zoomEnabled={true} />
+                <XAxis axisAt="bottom" orient="bottom" ticks={6} />
 				<YAxis axisAt="left" orient="left" />
                 {/*@ts-ignore*/}
-                <AreaSeries yAccessor={d => d?.bid} interpolation={curveMonotoneX}/>
+                <AreaSeries  yAccessor={d => d?.bid} interpolation={curveMonotoneX}/>
             </Chart>
         </ChartCanvas>
     )
