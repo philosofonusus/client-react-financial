@@ -4,7 +4,6 @@ import * as socketActions from '../socketActions'
 import { store } from '../redux/store'
 
 import sendMessage from '../redux/actions/sendMessage.action';
-import debounce from './debounce'
 
 const dataSubscriber = (coding: 'fact' | 'current') => {
     socket.onmessage = event => {
@@ -12,7 +11,7 @@ const dataSubscriber = (coding: 'fact' | 'current') => {
         socketSubscribe(data)
         if(data.name === socketActions.candleGenerated) {
             //@ts-ignore
-            debounce(() => store.dispatch(sendMessage(data.msg, coding)), 100)()
+             store.dispatch(sendMessage(data.msg, coding))
         }
     }
 }
