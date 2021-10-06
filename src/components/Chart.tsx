@@ -6,8 +6,9 @@ import DataType from '../types/Data.type'
 
 const AreaChart: React.FC<{
     data: any | DataType, type: 'svg' | 'hybrid',
-    spline: Boolean, width: number, height: number
-}> = ({data, type, width, height}) => {
+    spline: Boolean, width: number, height: number,
+    typed: 'fact' | 'current'
+}> = ({data, type, width, height, typed}) => {
 
     return(
 
@@ -17,17 +18,23 @@ const AreaChart: React.FC<{
         width={width} 
         height={height} 
         seriesName="Test"
+        mouseMoveEvent={true}
+        panEvent={true}
+        zoomEvent={true}
+        clamp={false}
         type={type}
-        xScale={scaleTime()}
+        xScale={scaleTime([0, 0.01])}
         xExtents={[]}
         //@ts-ignore
         xAccessor={d => d?.from}
         >
             <Chart id={0} yExtents={d => d?.bid}>
-                <XAxis axisAt="bottom" orient="bottom" ticks={6} />
+                <XAxis axisAt="bottom" orient="bottom" ticks={10}
+						zoomEnabled={true}
+                        />
 				<YAxis axisAt="left" orient="left" />
                 {/*@ts-ignore*/}
-                <AreaSeries  yAccessor={d => d?.bid} interpolation={curveMonotoneX}/>
+                <AreaSeries yAccessor={d => d?.bid} zoomEnabled={true} interpolation={curveMonotoneX}/>
             </Chart>
         </ChartCanvas>
     )

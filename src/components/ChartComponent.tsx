@@ -29,7 +29,7 @@ const ChartComponent = () => {
                     {isSpline ? 'spline' : 'nospline'} 
                 </button>
             </div>
-        <Chart key={key} width={1000} height={600} type="svg" spline={isSpline} data={data}/>
+        <Chart typed={type} key={key} width={1000} height={window.innerHeight} type="svg" spline={isSpline} data={data}/>
         </>
     )
 }
