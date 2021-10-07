@@ -8,7 +8,7 @@ const AreaChart: React.FC<{
     data: any | DataType, type: 'svg' | 'hybrid',
     spline: Boolean, width: number, height: number,
     typed: 'fact' | 'current'
-}> = ({data, type, width, height, typed}) => {
+}> = ({data, type, width, height}) => {
 
     return(
 
@@ -21,20 +21,19 @@ const AreaChart: React.FC<{
         mouseMoveEvent={true}
         panEvent={true}
         zoomEvent={true}
-        clamp={false}
         type={type}
-        xScale={scaleTime([0, 0.01])}
+        xScale={scaleTime([0, 0.1])}
         xExtents={[]}
         //@ts-ignore
         xAccessor={d => d?.from}
         >
             <Chart id={0} yExtents={d => d?.bid}>
-                <XAxis axisAt="bottom" orient="bottom" ticks={10}
+                <XAxis axisAt="bottom" orient="bottom" ticks={6}
 						zoomEnabled={true}
                         />
-				<YAxis axisAt="left" orient="left" />
+				<YAxis axisAt="left" orient="left" zoomEnabled={true}/>
                 {/*@ts-ignore*/}
-                <AreaSeries yAccessor={d => d?.bid} zoomEnabled={true} interpolation={curveMonotoneX}/>
+                <AreaSeries fillStyle="#fff" strokeStyle="#549acb" yAccessor={d => d?.bid} zoomEnabled={true} interpolation={curveMonotoneX}/>
             </Chart>
         </ChartCanvas>
     )
